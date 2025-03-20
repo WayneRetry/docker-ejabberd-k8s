@@ -4,20 +4,21 @@
 fork from https://github.com/processone/docker-ejabberd
 ----
 ecs/Dockerfile
-line:40
--FROM alpine:3.16
-+FROM alpine:3.19
+
+line: 40 
+- -FROM alpine:3.16
+- +FROM alpine:3.19
 
 line: 99
-+COPY modules .ejabberd-modules
-+RUN chown -R 9000:9000 .ejabberd-modules/
+- +COPY modules .ejabberd-modules
+- +RUN chown -R 9000:9000 .ejabberd-modules/
 
 ----
 ecs/bin/ejabberdctl
 
 line: 11
--ERLANG_NODE=ejabberd@localhost
-+ERLANG_NODE="$(hostname -s)@$(hostname -f)"
+- -ERLANG_NODE=ejabberd@localhost
+- +ERLANG_NODE="$(hostname -s)@$(hostname -f)"
 
 # docker-ejabberd
 
